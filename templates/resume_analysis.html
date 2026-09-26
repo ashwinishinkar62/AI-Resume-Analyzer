@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="max-w-5xl mx-auto">
+    <div class="bg-white shadow-xl rounded-2xl p-8">
+        <h1 class="text-4xl font-bold text-center mb-8">
+            Resume Analysis
+        </h1>
+
+        <div class="bg-blue-50 border-1-4 border-blue-600 py-5 rounded-lg mb-6">
+            {{ resume.gemini_analysis|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

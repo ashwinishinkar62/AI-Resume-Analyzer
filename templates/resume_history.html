@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h1 class="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
+        My Uploaded Resumes
+    </h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="mb-4 px-4 py-3 rounded-lg bg-green-100 text-green-800 text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if resumes %}
+
+        <div class="grid gap-6">
+
+            {% for resume in resumes %}
+
+            <div class="bg-white shadow-lg rounded-2xl p-4 sm:p-6">
+
+                <h2 class="text-xl sm:text-2xl font-semibold break-words">
+                    {{ resume.title }}
+                </h2>
+
+                <p class="text-gray-500 mt-2 text-sm sm:text-base">
+                    Uploaded on :
+                    {{ resume.uploaded_at|date:"d M Y, h:i A" }}
+                </p>
+
+                <div class="mt-5 flex flex-wrap gap-3">
+
+                    <a href="{% url 'view_resume' resume.id %}"
+                       target="_blank"
+                       class="bg-blue-600 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                        View Resume
+                    </a>
+
+                    <a href="{% url 'content_page' resume.id %}"
+                       class="bg-green-600 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                        AI Content
+                    </a>
+
+                    <a href="{% url 'learning_roadmap' resume.id %}"
+                       class="bg-blue-600 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                        AI Learning Roadmap
+                    </a>
+
+                    <a href="{% url 'interview_questions' resume.id %}"
+                       class="bg-purple-600 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                        Interview Questions
+                    </a>
+
+                    <a href="{% url 'download_pdf' resume.id %}"
+                    class="bg-indigo-600 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                        Download PDF
+                    </a>
+                    
+                    <form method="POST"
+                        action="{% url 'delete_resume' resume.id %}"
+                        class="inline"
+                        onsubmit="return confirm('Are you sure you want to delete this resume?');">
+
+                        {% csrf_token %}
+
+                        <button type="submit"
+                                class="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="bg-white shadow rounded-xl p-8 text-center">
+
+            <p class="text-xl">
+                No resumes uploaded yet.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

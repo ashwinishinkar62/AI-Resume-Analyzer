@@ -1,0 +1,179 @@
+{% load tailwind_tags static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+    .prose h1{
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 25px;
+    }
+    .prose h2{
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .prose h3{
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 18px;
+        color: #2563eb;
+        
+    }
+    .prose p{
+        margin-top: 12px;
+        line-height: 1.8;
+    }
+    .prose ul{
+        margin-left: 25px;
+        list-style: disc;
+    }
+    .prose strong{
+        color: #111827;
+    }
+    </style>
+</head>
+
+<body class="bg-slate-100 overflow-x-hidden">
+
+<nav class="bg-white shadow-md sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+            <!-- Logo -->
+            <h1 class="text-2xl sm:text-3xl font-bold text-blue-700 ">
+                AI Resume Analyzer
+            </h1>
+
+            <!-- Menu -->
+            <div class="flex flex-wrap items-center gap-3 sm:gap-5 text-base sm:text-[18px] font-medium">
+
+                <a href="{% url 'home' %}" class="hover:text-blue-600 transition">Home</a>
+
+                <a href="{% url 'about' %}" class="hover:text-blue-600 transition">About</a>
+
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'learning_roadmap_start' %}" class="hover:text-blue-600 transition">AI Learning Roadmap</a>
+
+                {% endif %}
+
+                <!-- <span class="text-gray-400">AI Learning Roadmap</span>-->
+                {% if user.is_authenticated %}
+
+                <div class="relative group">
+
+                    <button type="button"
+                            onclick="toggleAIContent()"
+                            class="px-4 py-2 hover:text-blue-600 transition inline-flex items-center gap-2 whitespace-nowrap">
+
+                        <span>AI Content</span>
+
+                        <i id="aiContentArrow"
+                        class="fa-solid fa-chevron-down text-xs transition-transform duration-200">
+                        </i>
+
+                    </button>
+
+                    <div id="aiContentDropdown"
+                        class="absolute left-0 top-full pt-1 hidden group-hover:block z-50 w-52">
+
+                        <div class="bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden">
+
+                            {% if latest_resume %}
+
+                                <a href="{% url 'resume_analysis' latest_resume.id %}"
+                                class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                                    Resume Analysis
+                                </a>
+
+                                <a href="{% url 'interview_questions' latest_resume.id %}"
+                                class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                                    AI Interview Questions
+                                </a>
+
+                            {% else %}
+
+                                <span class="block px-4 py-3 text-gray-500">
+                                    No Resume Uploaded
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <a href="{% url 'contact' %}" class="hover:text-blue-600 transition">Contact</a>
+
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'resume_history' %}" class="hover:text-blue-600 transition">History</a>
+
+                {% endif %}
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'logout' %}" class="bg-red-500 text-white px-4 py-2 rounded-lg">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                        Register
+                    </a>
+                
+                {% endif %}
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="w-full pt-6 sm:pt-8 md:pt-10">
+
+    {% block content %}
+
+    {% endblock %}
+    
+</main>
+<script>
+function toggleAIContent() {
+
+    const dropdown = document.getElementById("aiContentDropdown");
+    const arrow = document.getElementById("aiContentArrow");
+
+    dropdown.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-180");
+}
+</script>
+<footer class="bg-gray-900 text-white py-7 mt-10">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm">
+            © 2026 AI Resume Analyzer
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+            AI-powered resume analysis and career assistance
+        </p>
+    </div>
+</footer>
+</body>
+</html>
