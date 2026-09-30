@@ -36,6 +36,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import FileResponse
 
 @login_required
+
 def upload_resume(request):
     print("Upload Resume View Called")
 
