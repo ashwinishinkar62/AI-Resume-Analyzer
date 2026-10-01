@@ -1,6 +1,11 @@
-AI Resume Analyzer
+# AI Resume Analyzer
 
 An AI-powered web application that analyzes resumes, evaluates ATS compatibility, identifies skill gaps, matches resumes with job descriptions, and provides AI-based career assistance.
+
+## 🔗 Project Links
+
+- **Live Demo:** https://ai-resume-analyzer-1-1fri.onrender.com
+- **GitHub Repository:** https://github.com/ashwinishinkar62/AI-Resume-Analyzer
 
 🚀 Features
 
