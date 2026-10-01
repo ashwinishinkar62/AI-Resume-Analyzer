@@ -7,7 +7,7 @@ An AI-powered web application that analyzes resumes, evaluates ATS compatibility
 - **Live Demo:** https://ai-resume-analyzer-1-1fri.onrender.com
 - **GitHub Repository:** https://github.com/ashwinishinkar62/AI-Resume-Analyzer
 
-🚀 Features
+## 🚀 Features
 
 - 📄 Resume upload with PDF-only validation
 - 🔐 User registration, login and logout
@@ -27,7 +27,7 @@ An AI-powered web application that analyzes resumes, evaluates ATS compatibility
 - 📩 Contact form
 - 🔒 User-specific resume access
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
 Frontend
 
@@ -62,7 +62,7 @@ Development Tools
 - Git
 - GitHub
 
-⚙️ How It Works
+## ⚙️ How It Works
 
 1. User creates an account or logs in.
 2. User uploads a resume in PDF format.
@@ -77,7 +77,7 @@ Development Tools
    - Personalized learning roadmap
 9. Users can view their resume history and download generated reports.
 
-📊 Resume Analysis
+## 📊 Resume Analysis
 
 The application provides:
 
@@ -90,7 +90,7 @@ The application provides:
 - Improvement Suggestions
 - Career Advice
 
-💼 Job & Skill Analysis
+## 💼 Job & Skill Analysis
 
 The application compares the uploaded resume with a job description and provides:
 
@@ -101,7 +101,7 @@ The application compares the uploaded resume with a job description and provides
 - Skill Gap Analysis
 - Recommended Projects
 
-🤖 AI Career Assistance
+## 🤖 AI Career Assistance
 
 Google Gemini is used to generate:
 
@@ -143,7 +143,7 @@ The application includes:
 - PDF file type validation
 - Maximum file size validation
 
-📁 Project Structure
+## 📁 Project Structure
 
 AI Resume Analyzer/
 │
